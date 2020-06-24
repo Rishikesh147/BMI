@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 const kBottomCardHeight = 80.0;
@@ -13,4 +14,29 @@ const kLabelTextStyle = TextStyle(
 const kHeightTextStyle = TextStyle(
   fontSize: 50.0,
   fontWeight: FontWeight.w900,
+);
+
+const kContainerTextStyle = TextStyle(
+  fontWeight: FontWeight.bold,
+  fontSize: 25.0,
+);
+
+const kTextTitleStyle = TextStyle(
+  fontSize: 50.0,
+  fontWeight: FontWeight.bold,
+);
+
+const kResultTextStyle = TextStyle(
+  color: Color(0xFF24D876),
+  fontWeight: FontWeight.bold,
+  fontSize: 22.0,
+);
+
+const kBmiTextStyle = TextStyle(
+  fontSize: 100.0,
+  fontWeight: FontWeight.bold,
+);
+
+const kCommentTextStyle = TextStyle(
+  fontSize: 22.0,
 );

@@ -1,8 +1,13 @@
+import 'package:bmi/bmi_calculation.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_content.dart';
 import 'reusableCard.dart';
 import 'constants.dart';
+import 'Results_Page.dart';
+import 'bottomButton.dart';
+import 'roundedIconButton.dart';
 
 
 
@@ -24,6 +29,8 @@ class _InputPageState extends State<InputPage> {
   Gender selectedGender;
 
   int height = 180;
+  int weight = 60;
+  int age = 20;
 
   @override
   Widget build(BuildContext context) {
@@ -123,28 +130,113 @@ class _InputPageState extends State<InputPage> {
           child: Row(
             children: [
               Expanded(
-                child:ReusableCard(colour: kActiveCardColour,),
+                child:ReusableCard(
+                  colour: kActiveCardColour,
+                  cardChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'WEIGHT',
+                        style: kLabelTextStyle,
+                      ),
+                      Text(
+                        weight.toString(),
+                        style: kHeightTextStyle,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          RoundedIconButton(
+                              icon: FontAwesomeIcons.minus,
+                            onPressed: (){
+                              setState(() {
+                                weight--;
+                              });
+                            },
+                          ),
+                          SizedBox(width: 10),
+                          RoundedIconButton(
+                              icon: FontAwesomeIcons.plus,
+                            onPressed: (){
+                                setState(() {
+                                  weight++;
+                                });
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
               ),
               Expanded(
-                child:ReusableCard(colour: kActiveCardColour,),
+                child:ReusableCard(
+                  colour: kActiveCardColour,
+                  cardChild:  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'AGE',
+                        style: kLabelTextStyle,
+                      ),
+                      Text(
+                        age.toString(),
+                        style: kHeightTextStyle,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          RoundedIconButton(
+                              icon: FontAwesomeIcons.minus,
+                            onPressed: (){
+                              setState(() {
+                                age--;
+                              });
+                            },
+                          ),
+                          SizedBox(width: 10),
+                          RoundedIconButton(
+                              icon: FontAwesomeIcons.plus,
+                            onPressed: (){
+                              setState(() {
+                                age++;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
               )
             ],
           )
         ),
-        Container(
-          width: double.infinity,
-          height: kBottomCardHeight,
-          margin: EdgeInsets.all(10),
-          decoration:BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: kBottomContainerColour,
-          ),
+        BottomButton(
+          buttonTitle: 'CALCULATE',
+          onTap: (){
+
+            BmiCalculation calc = BmiCalculation(height: height,weight: weight);
+
+            Navigator.push(context,
+            MaterialPageRoute(builder: (context) => ResultPage(
+              bmiResult: calc.calculationBMI(),
+              resultComment: calc.getComment(),
+              resultText: calc.getResult(),
+            )));
+          },
         ),
       ],
-    )
+    ),
     ); 
   }
 }
+
+
+
+
+
+
 
 
 
